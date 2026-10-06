@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Password Strength Analyzer &amp; Security Suggestion Tool</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Password Strength Analyzer</h1>
+  <p class="sub">Local, privacy-first analysis. Passwords are never stored or logged. Use <b>demo</b> passwords only.</p>
+  <nav>
+    <button class="tab active" data-tab="analyzer">Analyzer</button>
+    <button class="tab" data-tab="generator">Generator</button>
+    <button class="tab" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="learn">Learn</button>
+  </nav>
+</header>
+<main>
+<section id="analyzer" class="panel">
+  <label for="pw">Password</label>
+  <div class="row">
+    <input id="pw" type="password" autocomplete="new-password" spellcheck="false" autocapitalize="off" maxlength="128" placeholder="Type a demo password…">
+    <button id="toggle" type="button" aria-pressed="false">👁 Show Password</button>
+  </div>
+  <details>
+    <summary>Optional demo context (compared locally, never stored)</summary>
+    <div class="grid">
+      <input id="ctx-name" placeholder="First name (demo)" autocomplete="off">
+      <input id="ctx-year" placeholder="Birth year (demo)" autocomplete="off" inputmode="numeric">
+      <input id="ctx-org" placeholder="Company / college (demo)" autocomplete="off">
+      <label class="inline">Policy min length <input id="pol-min" type="number" min="1" max="128" value="12"></label>
+    </div>
+  </details>
+
+  <div id="result" hidden>
+    <div class="meter"><div id="bar"></div></div>
+    <div class="scoreline"><span id="blocks"></span> <b id="label"></b> <span id="score"></span></div>
+    <div id="policy" class="pill"></div>
+    <div class="cols">
+      <div><h3>Checks</h3><ul id="checks"></ul></div>
+      <div><h3>Suggestions</h3><ul id="suggestions"></ul></div>
+    </div>
+    <h3>Metrics &amp; entropy</h3>
+    <table id="metrics"></table>
+    <p class="note" id="entropy-note"></p>
+    <button id="record" type="button">Save safe metrics to dashboard</button>
+    <span id="record-msg" class="note"></span>
+    <p class="note" id="disclaimer"></p>
+  </div>
+</section>
+
+<section id="generator" class="panel" hidden>
+  <h2>Secure generator</h2>
+  <p class="note">Uses Python <code>secrets</code> (cryptographically secure). Generated values are never stored.</p>
+  <div class="grid">
+    <label class="inline">Length
+      <select id="gen-len"><option>16</option><option selected>20</option><option>24</option></select></label>
+    <label class="inline"><input type="checkbox" id="g-up" checked> Uppercase</label>
+    <label class="inline"><input type="checkbox" id="g-low" checked> Lowercase</label>
+    <label class="inline"><input type="checkbox" id="g-num" checked> Numbers</label>
+    <label class="inline"><input type="checkbox" id="g-sym" checked> Symbols</label>
+  </div>
+  <div class="row"><button id="gen-pw" type="button">Generate password</button>
+  <button id="gen-phrase" type="button">Generate demo passphrase</button></div>
+  <code id="gen-out"></code>
+  <p class="note" id="gen-note"></p>
+  <button id="gen-analyze" type="button" hidden>Analyze this value</button>
+</section>
+
+<section id="dashboard" class="panel" hidden>
+  <h2>Aggregate dashboard (metadata only)</h2>
+  <div id="kpis" class="kpis"></div>
+  <div class="charts">
+    <div><canvas id="c-strength"></canvas></div>
+    <div><canvas id="c-score"></canvas></div>
+    <div><canvas id="c-weak"></canvas></div>
+    <div><canvas id="c-length"></canvas></div>
+  </div>
+  <p class="note" id="dash-msg"></p>
+</section>
+
+<section id="learn" class="panel" hidden>
+  <h2>Password vs passphrase</h2>
+  <p>A long, unique passphrase of <b>randomly chosen</b> words is easier to remember than <code>x7$Qp!2z</code> and hard to guess. Never use quotes or song lyrics. Examples such as <i>velvet-galaxy-harbor-orchid</i> are for demonstration only: do not reuse them.</p>
+  <h2>Why Password123! is weak</h2>
+  <p>It satisfies composition rules but is a common word + predictable number + symbol. <b>Length + unpredictability + pattern resistance + common-password checks + context</b> give a better assessment.</p>
+  <h2>10 password security rules</h2>
+  <ol>
+    <li>Use a unique password for every account.</li><li>Prefer long passwords or passphrases.</li>
+    <li>Avoid predictable personal information.</li><li>Avoid common passwords.</li>
+    <li>Never reuse passwords across sites.</li><li>Use a password manager.</li>
+    <li>Enable MFA.</li><li>Never share passwords.</li>
+    <li>Be cautious of phishing pages.</li><li>Change passwords when a compromise is suspected or confirmed.</li>
+  </ol>
+  <p class="note">Entropy ≈ L × log₂(N) assumes random choice, so it is optimistic for human-made passwords. Scores are project-defined, not a universal standard.</p>
+</section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

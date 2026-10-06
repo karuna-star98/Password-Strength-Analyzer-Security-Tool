@@ -1,0 +1,27 @@
+:root{--bg:#0e1420;--card:#161f31;--ink:#e6edf7;--mute:#8da0bd;--line:#26334d;--acc:#38d6a8;--bad:#ff5d6c;--warn:#ffb454;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header,main{max-width:900px;margin:0 auto;padding:1rem 1.2rem}
+h1{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.6rem;margin:.4rem 0;color:var(--acc)}
+.sub,.note{color:var(--mute);font-size:.88rem}
+nav{display:flex;gap:.4rem;margin-top:.8rem;flex-wrap:wrap}
+button,select,input{font:inherit;color:var(--ink);background:#0b111c;border:1px solid var(--line);border-radius:8px;padding:.55rem .8rem}
+button{cursor:pointer;background:var(--card)} button:hover{border-color:var(--acc)}
+.tab.active{background:var(--acc);color:#04201a;border-color:var(--acc);font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.2rem;margin:.6rem 0}
+.row{display:flex;gap:.5rem}.row input{flex:1}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.5rem;margin:.6rem 0;align-items:center}
+.inline{display:flex;gap:.4rem;align-items:center;color:var(--mute)}
+details{margin:.7rem 0;color:var(--mute)}
+.meter{height:14px;background:#0b111c;border-radius:8px;overflow:hidden;margin-top:1rem}
+#bar{height:100%;width:0;transition:width .25s,background .25s}
+.scoreline{margin:.5rem 0;font-family:ui-monospace,Menlo,Consolas,monospace}
+.pill{display:inline-block;padding:.15rem .7rem;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:.6rem}
+.pill.ok{background:#12372d;color:var(--acc)}.pill.fail{background:#3b1820;color:var(--bad)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+ul{padding-left:1.1rem}li{margin:.25rem 0}li.good{list-style:"✓  ";color:var(--acc)}li.bad{list-style:"⚠  ";color:var(--warn)}li.tip{list-style:"•  "}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td{border-bottom:1px solid var(--line);padding:.3rem .2rem}td:last-child{text-align:right;font-family:ui-monospace,monospace}
+code#gen-out{display:block;margin:.8rem 0;padding:.8rem;background:#0b111c;border-radius:8px;word-break:break-all;color:var(--acc)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;margin-bottom:1rem}
+.kpi{background:#0b111c;border-radius:8px;padding:.6rem;text-align:center}.kpi b{display:block;font-size:1.4rem;color:var(--acc)}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
